@@ -1,6 +1,6 @@
 import sqlite3
 
-def get_connection(db_path="university.db"):
+def get_connection(db_path="/workspaces/semester2-week2/session_1/3_python/example/university.db"):
     """
     Establish a connection to the SQLite database.
     Returns a connection object.
@@ -115,7 +115,16 @@ def review_student_numbers(db):
     Print the number of students registered for each course.    
     :param db: Database object to query
     '''
-    pass
+    query = '''
+            SELECT c.name, COUNT(s.name) FROM
+            StudentCourses sc JOIN Students s
+            ON student_id=s.id JOIN Courses c
+            ON course_id=c.id
+            GROUP BY course_id;
+            '''
+    cursor = db.execute(query)
+    for course in cursor:
+        print(f"Course: {course[0]}   Students: {course[1]}")
 
 def main():
 

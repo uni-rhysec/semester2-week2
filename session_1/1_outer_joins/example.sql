@@ -11,3 +11,9 @@
 -- write your sql code here
 
 
+SELECT name AS CourseName, student_id AS TotalStudents
+FROM
+Courses LEFT JOIN StudentCourses
+ON Courses.id=StudentCourses.course_id
+--GROUP BY name HAVING TotalStudents<20;
+ORDER BY CourseName;

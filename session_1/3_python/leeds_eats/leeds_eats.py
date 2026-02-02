@@ -5,7 +5,12 @@ import sqlite3
 # ==================================================
 
 def total_customers(conn):
-    pass
+    query = '''
+            SELECT COUNT(customer_id)
+            FROM customers;
+            '''
+    cursor = conn.execute(query)
+    print(cursor.fetchone())
 
 
 def customer_signup_range(conn):
@@ -196,7 +201,7 @@ def main_menu(conn):
         else:
             print("Invalid option. Please try again.")
 
-def get_connection(db_path="food_delivery.db"):
+def get_connection(db_path="/workspaces/semester2-week2/session_1/3_python/leeds_eats/food_delivery.db"):
     """
     Establish a connection to the SQLite database.
     Returns a connection object.
