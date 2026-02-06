@@ -20,9 +20,9 @@ def customer_tickets(conn, customer_id):
     """
     query = '''
             SELECT f.title, s.screen, t.price
-            FROM films f LEFT JOIN screenings s ON f.film_id = s.film_id
-            LEFT JOIN tickets t ON s.screening_id = t.screening_id
-            LEFT JOIN customers c ON t.customer_id = c.customer_id
+            FROM films f JOIN screenings s ON f.film_id = s.film_id
+            JOIN tickets t ON s.screening_id = t.screening_id
+            JOIN customers c ON t.customer_id = c.customer_id
             WHERE c.customer_id = ?
             ORDER BY f.title ASC
             '''
